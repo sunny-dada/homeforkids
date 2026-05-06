@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   Camera,
   Shield,
+  ShieldAlert,
   Home,
   Lightbulb,
   Flag,

@@ -14,6 +14,8 @@ const buttonVariants = cva(
           "bg-white text-primary border border-solid border-primary active:text-primary-700 disabled:text-foreground-muted disabled:border-foreground-muted",
         tertiary:
           "bg-background-second text-primary active:text-primary-700 disabled:text-foreground-muted",
+        outline:
+          "bg-white text-foreground border border-solid border-border hover:border-primary hover:bg-background-second disabled:opacity-50",
       },
     },
     defaultVariants: { variant: "primary" },
