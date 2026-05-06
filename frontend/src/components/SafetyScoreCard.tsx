@@ -27,52 +27,6 @@ const GRADE_CONFIG: Record<
   },
 };
 
-function ScoreRing({
-  score,
-  grade,
-}: {
-  score: number;
-  grade: SafetyGrade;
-}) {
-  const config = GRADE_CONFIG[grade];
-  const radius = 54;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (score / 100) * circumference;
-
-  return (
-    <div className="relative w-36 h-36 flex items-center justify-center">
-      <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
-        <circle
-          cx="60"
-          cy="60"
-          r={radius}
-          fill="none"
-          stroke="#f3f4f6"
-          strokeWidth="10"
-        />
-        <circle
-          cx="60"
-          cy="60"
-          r={radius}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="10"
-          strokeLinecap="round"
-          strokeDasharray={circumference}
-          strokeDashoffset={offset}
-          className={cn("transition-all duration-700 ease-out", config.ringColor)}
-        />
-      </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className={cn("text-4xl font-bold", config.scoreColor)}>
-          {score}
-        </span>
-        <span className="text-xs text-foreground-muted">/ 100</span>
-      </div>
-    </div>
-  );
-}
-
 interface SafetyScoreCardProps {
   data: SafetyResponse;
 }
