@@ -137,6 +137,7 @@ export default function App() {
                     lng={selected.lng}
                     name={selected.name}
                     address={selected.address}
+                    radius={result ? radius : undefined}
                   />
                 </div>
               </>
@@ -277,6 +278,7 @@ export default function App() {
             lng={selected?.lng ?? 126.9320}
             name={selected?.name ?? "여의나루역"}
             address={selected?.address ?? "서울특별시 영등포구"}
+            radius={result && selected ? radius : undefined}
           />
         </div>
       </main>

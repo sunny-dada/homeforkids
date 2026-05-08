@@ -8,6 +8,7 @@ interface MapViewProps {
   lng: number;
   name: string;
   address: string;
+  radius?: number; // 반경(미터)
 }
 
 declare global {
@@ -16,9 +17,10 @@ declare global {
   }
 }
 
-export function MapView({ lat, lng, name, address }: MapViewProps) {
+export function MapView({ lat, lng, name, address, radius }: MapViewProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
+  const circleInstance = useRef<any>(null);
 
   useEffect(() => {
     const KAKAO_JS_KEY = import.meta.env.VITE_KAKAO_JS_KEY;
@@ -71,16 +73,41 @@ export function MapView({ lat, lng, name, address }: MapViewProps) {
         content: `<div style="padding:8px 12px;font-size:12px;font-weight:600;white-space:nowrap;">${name}</div>`,
       });
       infowindow.open(map, marker);
+
+      // 반경 원 그리기
+      if (radius) {
+        // 기존 원 제거
+        if (circleInstance.current) {
+          circleInstance.current.setMap(null);
+        }
+
+        const circle = new window.kakao.maps.Circle({
+          center: new window.kakao.maps.LatLng(lat, lng),
+          radius: radius,
+          strokeWeight: 2,
+          strokeColor: "#6366F1",
+          strokeOpacity: 0.8,
+          strokeStyle: "solid",
+          fillColor: "#818CF8",
+          fillOpacity: 0.2,
+        });
+        circle.setMap(map);
+        circleInstance.current = circle;
+      }
     };
 
     loadKakaoMap();
 
     return () => {
+      if (circleInstance.current) {
+        circleInstance.current.setMap(null);
+        circleInstance.current = null;
+      }
       if (mapInstance.current) {
         mapInstance.current = null;
       }
     };
-  }, [lat, lng, name]);
+  }, [lat, lng, name, radius]);
 
   const KAKAO_JS_KEY = import.meta.env.VITE_KAKAO_JS_KEY;
 
