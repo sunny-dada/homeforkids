@@ -271,16 +271,14 @@ export default function App() {
         </div>
 
         {/* 우측: 지도 - 데스크톱만 */}
-        {selected && (
-          <div className="hidden md:block md:sticky md:top-5 md:h-[calc(100vh-40px)]">
-            <MapView
-              lat={selected.lat}
-              lng={selected.lng}
-              name={selected.name}
-              address={selected.address}
-            />
-          </div>
-        )}
+        <div className="hidden md:block md:sticky md:top-5 md:h-[calc(100vh-40px)]">
+          <MapView
+            lat={selected?.lat ?? 37.5271}
+            lng={selected?.lng ?? 126.9320}
+            name={selected?.name ?? "여의나루역"}
+            address={selected?.address ?? "서울특별시 영등포구"}
+          />
+        </div>
       </main>
 
       <footer className="border-0 border-t border-solid border-border py-6 mt-4">

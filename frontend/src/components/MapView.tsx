@@ -53,7 +53,7 @@ export function MapView({ lat, lng, name, address }: MapViewProps) {
 
       const options = {
         center: new window.kakao.maps.LatLng(lat, lng),
-        level: 3,
+        level: 2, // 약 300m 축적
       };
 
       const map = new window.kakao.maps.Map(mapContainer.current, options);
