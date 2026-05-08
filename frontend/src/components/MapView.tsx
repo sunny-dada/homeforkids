@@ -117,7 +117,7 @@ export function MapView({ lat, lng, name, address }: MapViewProps) {
       <CardContent className="p-0">
         <div
           ref={mapContainer}
-          className="w-full h-[240px] rounded-lg overflow-hidden"
+          className="w-full h-[240px] md:h-[calc(100vh-200px)] rounded-lg overflow-hidden"
         />
         <div className="px-4 py-3 border-0 border-t border-solid border-border">
           <div className="flex items-start gap-2">

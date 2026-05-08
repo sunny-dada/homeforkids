@@ -114,29 +114,33 @@ export default function App() {
     <div className="min-h-screen bg-background-second">
       <Header />
 
-      <main className="w-full max-w-[540px] mx-auto px-5 py-5 flex flex-col gap-4">
-        {/* 검색 영역 */}
-        <section className="flex flex-col gap-3">
-          <SearchInput onSelect={setSelected} />
+      <main className="w-full max-w-7xl mx-auto px-5 py-5 md:grid md:grid-cols-[1fr_500px] md:gap-6">
+        {/* 좌측: 검색 + 결과 */}
+        <div className="flex flex-col gap-4">
+          {/* 검색 영역 */}
+          <section className="flex flex-col gap-3">
+            <SearchInput onSelect={setSelected} />
 
-          {selected && (
-            <>
-              <div className="flex items-center gap-2 px-1">
-                <MapPin className="w-4 h-4 text-primary flex-none" />
-                <span className="text-sm text-foreground-second truncate">
-                  {selected.name} · {selected.address}
-                </span>
-              </div>
+            {selected && (
+              <>
+                <div className="flex items-center gap-2 px-1">
+                  <MapPin className="w-4 h-4 text-primary flex-none" />
+                  <span className="text-sm text-foreground-second truncate">
+                    {selected.name} · {selected.address}
+                  </span>
+                </div>
 
-              {/* 지도 */}
-              <MapView
-                lat={selected.lat}
-                lng={selected.lng}
-                name={selected.name}
-                address={selected.address}
-              />
-            </>
-          )}
+                {/* 지도 - 모바일만 */}
+                <div className="md:hidden">
+                  <MapView
+                    lat={selected.lat}
+                    lng={selected.lng}
+                    name={selected.name}
+                    address={selected.address}
+                  />
+                </div>
+              </>
+            )}
 
           {/* 반경 선택 */}
           <div className="flex items-center gap-2">
@@ -263,6 +267,19 @@ export default function App() {
               </p>
             </CardContent>
           </Card>
+        )}
+        </div>
+
+        {/* 우측: 지도 - 데스크톱만 */}
+        {selected && (
+          <div className="hidden md:block md:sticky md:top-5 md:h-[calc(100vh-40px)]">
+            <MapView
+              lat={selected.lat}
+              lng={selected.lng}
+              name={selected.name}
+              address={selected.address}
+            />
+          </div>
         )}
       </main>
 
