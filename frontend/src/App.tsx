@@ -114,7 +114,7 @@ export default function App() {
     <div className="min-h-screen bg-background-second">
       <Header />
 
-      <main className="w-full max-w-[1600px] mx-auto px-5 py-5 md:grid md:grid-cols-[600px_1fr] md:gap-6">
+      <main className="w-full max-w-[1600px] mx-auto px-5 py-5 md:grid md:grid-cols-[420px_1fr] md:gap-6">
         {/* 좌측: 검색 + 결과 */}
         <div className="flex flex-col gap-4">
           {/* 검색 영역 */}
