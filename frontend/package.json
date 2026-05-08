@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "npx serve -s dist -l $PORT"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
